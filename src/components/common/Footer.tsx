@@ -2,7 +2,7 @@ function Footer() {
   return (
     <>
       <hr />
-      <footer>copyright</footer>
+      <footer>Copyright ©SUNFIVE. All Rights Reserved.</footer>
     </>
   );
 }
