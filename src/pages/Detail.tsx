@@ -1,16 +1,23 @@
-import Footer from '../components/common/Footer';
-import Header from '../components/common/Header';
-import Sidebar from '../components/common/Sidebar';
+import { Card } from '@/components/ui/Card/Card';
 
-function Detail() {
+const Detail = () => {
   return (
-    <>
-      <Header />
-      <Sidebar />
-      <div>디테일</div>
-      <Footer />
-    </>
+    <section className="space-y-6">
+      <Card variant="elevated">
+        <h2 className="text-lg font-semibold">Elevated Card</h2>
+        <p className="text-sm text-gray-600">
+          This card has shadow and background.
+        </p>
+      </Card>
+
+      <Card variant="outline">
+        <h2 className="text-lg font-semibold">Outline Card</h2>
+        <p className="text-sm text-gray-600">
+          This card is transparent with border only.
+        </p>
+      </Card>
+    </section>
   );
-}
+};
 
 export default Detail;
