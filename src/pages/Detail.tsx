@@ -1,26 +1,30 @@
+import { FadeInSection } from '@/components/motion/FadeInSection';
 import { Card } from '@/components/ui/Card/Card';
 
 const Detail = () => {
   return (
     <section className="space-y-6">
-      <Card variant="elevated">
-        <h2 className="text-lg font-semibold">Elevated Card</h2>
-        <p className="text-sm text-gray-600">
-          This card has shadow and background.
-        </p>
-      </Card>
+      <FadeInSection>
+        <Card variant="elevated">
+          <h2 className="text-lg font-semibold">Elevated Card</h2>
+          <p className="text-sm text-gray-600">
+            This card has shadow and background.
+          </p>
+        </Card>
+      </FadeInSection>
 
-      <Card variant="outline">
-        <h2 className="text-lg font-semibold">Outline Card</h2>
-        <p className="text-sm text-gray-600">
-          This card is transparent with border only.
-        </p>
-      </Card>
+      <FadeInSection once={false}>
+        <Card variant="outline">
+          <h2 className="text-lg font-semibold">Outline Card</h2>
+          <p className="text-sm text-gray-600">
+            This card is transparent with border only.
+          </p>
+        </Card>
+      </FadeInSection>
 
       <Card variant="elevated" padding="lg" shadow="strong" rounded="lg">
         여백 넓고, 그림자 강하고, 라운드 큰 카드
       </Card>
-
       <Card
         variant="outline"
         interactive

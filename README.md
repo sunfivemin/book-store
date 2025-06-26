@@ -179,3 +179,71 @@ extend: {
   }
 }
 ```
+
+---
+
+✨ FadeInSection – Scroll 애니메이션 유틸
+
+스크롤 시 요소가 아래에서 위로 fade-in 되며 등장하는 효과를 제공하는 컴포넌트입니다. framer-motion과 useInView를 활용하며, 한 번만 실행할지, 스크롤 진입 시마다 반복할지를 설정할 수 있습니다.
+
+✅ 사용법
+
+```tsx
+import { FadeInSection } from '@/components/motion/FadeInSection';
+
+// 한 번만 등장 애니메이션
+<FadeInSection>
+  <Card>최초 진입 시 fade-in</Card>
+</FadeInSection>
+
+// 스크롤 진입할 때마다 fade-in
+<FadeInSection once={false}>
+  <Card>계속 재등장하는 카드</Card>
+</FadeInSection>
+```
+
+💡 내부 동작 방식
+• useInView로 요소가 viewport에 들어올 때 감지
+• framer-motion의 useAnimation으로 애니메이션 제어
+• motion.section 태그로 감싸서 y: 20 → 0, opacity: 0 → 1 전환
+
+---
+
+🧭 Header – 반응형 상단 고정 헤더
+
+스크롤 위치에 따라 스타일이 동적으로 변경되는 반응형 Sticky Header입니다. Vanilla Extract + tailwind-variants를 조합하여 구현되었으며, 다크모드와 **접근성(시각적 숨김)**도 고려했습니다.
+
+✅ 기능
+• 상단 고정(sticky)
+• 스크롤 시 자동 축소 (height, padding, box-shadow 변화)
+• BOOKSTORE 로고 및 카테고리 네비게이션, 로그인/회원가입 버튼
+• 반응형 레이아웃 (최대 너비: 1020px)
+• body.scrolled 클래스를 활용한 스타일 분기
+
+💡 스크롤 반응 스타일 적용 방식
+body.scrolled 클래스가 추가되면 headerContainer에 아래 스타일이 적용됨:
+
+```ts
+selectors: {
+  'body.scrolled &': {
+    padding: vars.spacing.sm,
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.05)',
+    borderRadius: '12px',
+  },
+},
+```
+
+🧱 구조 예시
+
+```tsx
+<header className={clsx(...)}> // sticky + transition
+  <div className={headerContainer}> // max-width: 1020px
+    <img src="..." alt="BOOKSTORE 로고" />
+    <h1>
+      <span className="sr-only">BOOKSTORE</span>
+    </h1>
+    <nav>전체, 동화, 소설, 사회</nav>
+    <div>로그인 / 회원가입</div>
+  </div>
+</header>
+```

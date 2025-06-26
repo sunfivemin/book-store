@@ -8,16 +8,16 @@ export const inputWrapper = style({
 });
 
 export const inputLabel = style({
-  fontWeight: 600,
+  fontWeight: vars.fontWeight.medium,
   fontFamily: vars.font.family,
-  color: vars.color.default,
+  color: vars.color.text.default,
 });
 
 export const inputError = style({
   color: vars.color.error,
   fontSize: vars.fontSize.sm,
   marginTop: vars.spacing.sm,
-  fontWeight: 500,
+  fontWeight: vars.fontWeight.medium,
 });
 
 export const input = style({});
