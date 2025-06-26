@@ -14,7 +14,7 @@ export const inputLabel = style({
 });
 
 export const inputError = style({
-  color: vars.color.secondary,
+  color: vars.color.error,
   fontSize: vars.fontSize.sm,
   marginTop: vars.spacing.sm,
   fontWeight: 500,

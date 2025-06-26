@@ -1,5 +1,7 @@
+// src/components/ui/Input/Input.spec.tsx
 import { render, screen } from '@testing-library/react';
 import { Input } from './Input';
+import React from 'react';
 
 describe('Input', () => {
   it('renders input with label', () => {
@@ -16,5 +18,11 @@ describe('Input', () => {
     render(<Input size="sm" variant="underline" />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveClass(expect.stringContaining('border-b'));
+  });
+
+  it('forwards ref correctly', () => {
+    const ref = React.createRef<HTMLInputElement>();
+    render(<Input label="비밀번호" ref={ref} />);
+    expect(ref.current).toBeInstanceOf(HTMLInputElement);
   });
 });
