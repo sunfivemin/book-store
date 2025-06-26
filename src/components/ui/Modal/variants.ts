@@ -5,7 +5,7 @@ export const modal = tv({
   variants: {
     backdrop: {
       dark: 'bg-black/50',
-      light: 'bg-white/30',
+      light: 'bg-surface-popup/30',
     },
   },
   defaultVariants: {

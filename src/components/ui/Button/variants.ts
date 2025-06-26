@@ -6,10 +6,10 @@ export const button = tv({
   base: 'rounded font-semibold transition-colors',
   variants: {
     intent: {
-      primary: 'bg-blue-500 text-white hover:bg-blue-600',
-      secondary: 'bg-gray-500 text-white hover:bg-gray-600',
-      danger: 'bg-red-500 text-white hover:bg-red-600',
-      ghost: 'bg-transparent text-black hover:bg-gray-100',
+      primary: 'bg-brand-primary text-white hover:bg-brand-primary/80',
+      secondary: 'bg-brand-secondary text-white hover:bg-brand-secondary/80',
+      danger: 'bg-priority-must text-white hover:bg-priority-must/80',
+      ghost: 'bg-transparent text-text-default hover:bg-surface-hover',
     },
     size: {
       sm: 'text-sm px-3 py-1',

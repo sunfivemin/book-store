@@ -1,18 +1,31 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: 'class',
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+// ✅ tailwind.config.ts
+import { colorTokens } from './src/styles/tokens/colors';
+import colors from 'tailwindcss/colors';
+
+const config = {
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './.storybook/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        primary: '#6366f1', // 인디고 계열
-        secondary: '#f59e0b', // 앰버 계열
+        ...colorTokens,
+        'brand-primary': colorTokens.brand.primary,
+        'brand-secondary': colorTokens.brand.secondary,
+        'priority-must': colorTokens.priority.must,
+        'text-default': colorTokens.text.default,
+        'border-input': colorTokens.border?.input ?? colors.gray[200],
       },
       fontFamily: {
-        pretendard: ['Pretendard', 'system-ui', 'sans-serif'],
-        kkokkhgae: ['kkokghae', 'cursive'],
+        sans: ['var(--font-pretendard)', 'sans-serif'],
+        kkonghae: ['var(--font-kkonghae)', 'cursive'],
+      },
+      fontWeight: {
+        normal: '400',
+        medium: '500',
+        bold: '700',
       },
     },
   },
   plugins: [],
 };
+
+export default config;
