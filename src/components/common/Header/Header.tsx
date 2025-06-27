@@ -10,11 +10,12 @@ import logo from '@/assets/logo.svg';
 import { LogIn, UserPlus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { CATEGORIES } from '@/constants/categories';
 import { Link } from 'react-router-dom';
+import { useCategory } from '@/hooks/useCategory';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { categories } = useCategory();
 
   useEffect(() => {
     const onScroll = () => {
@@ -25,6 +26,7 @@ function Header() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
   return (
     <header
       className={clsx(
@@ -48,15 +50,17 @@ function Header() {
         {/* 카테고리 네비게이션 */}
         <nav>
           <ul className="flex items-center gap-4">
-            {CATEGORIES.map(item => (
-              <li key={item.id}>
+            {categories.map(item => (
+              <li key={item.category_id}>
                 <Link
                   to={
-                    item.id === 0 ? '/books' : `/books?category_id=${item.id}`
+                    item.category_id === 0
+                      ? '/books'
+                      : `/books?category_id=${item.category_id}`
                   }
                   className={navItemStyle}
                 >
-                  {item.name}
+                  {item.category_name}
                 </Link>
               </li>
             ))}
