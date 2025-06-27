@@ -12,12 +12,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "@vanilla-extract/css": "^1.17.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.19.1",
     "lucide-react": "^0.523.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
     "sanitize.css": "^13.0.0",
     "tailwind-variants": "^1.0.0"
   },
@@ -39,6 +41,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.5.6",
+    "postcss-nested": "^7.0.2",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.4.0",
     "typescript": "~5.8.3",

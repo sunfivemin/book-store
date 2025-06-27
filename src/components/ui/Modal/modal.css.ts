@@ -17,7 +17,7 @@ export const modal = style({
 
 export const modalContent = style({
   backgroundColor: vars.color.background,
-  color: vars.color.text,
+  color: vars.color.text.default,
   padding: vars.spacing.lg,
   borderRadius: '12px',
   minWidth: '300px',

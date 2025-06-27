@@ -1,3 +1,4 @@
+// src/components/common/Header/header.css.ts
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
@@ -32,7 +33,7 @@ export const headerContainer = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   borderRadius: vars.radius.lg,
-  backgroundColor: vars.color.background, // 배경 흰색
+  backgroundColor: vars.color.background,
   transition: 'all 0.3s ease-in-out',
 
   '@media': {
@@ -43,6 +44,7 @@ export const headerContainer = style({
       maxWidth: vars.layout.width.large,
     },
   },
+
   selectors: {
     'body.scrolled &': {
       padding: vars.spacing.md,
@@ -50,14 +52,4 @@ export const headerContainer = style({
       borderRadius: vars.radius.lg,
     },
   },
-});
-
-export const scrolledStyle = style({
-  height: '3.5rem',
-  padding: '0 1rem',
-  marginTop: '0.5rem', // ⬅️ 화면 위에서 살짝 띄우기
-  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.05)', // ⬅️ 더 넓고 옅은 그림자
-  borderRadius: vars.radius.lg,
-  backgroundColor: vars.color.background,
-  transition: 'all 0.3s ease-in-out',
 });

@@ -19,9 +19,24 @@ export default function Home() {
       <Title size="lg" color="primary">
         안녕하세요
       </Title>
-      <Title size="sm" color="default">
+      <Title size="sm" color="input">
         작은 타이틀
       </Title>
+
+      <br />
+      <Button intent="primary" size="sm">
+        Primary Small
+      </Button>
+      <Button intent="danger" size="md">
+        Danger Medium
+      </Button>
+      <Button intent="ghost" size="lg">
+        Ghost Large
+      </Button>
+
+      <div className="bg-white text-black dark:bg-slate-600 dark:text-white">
+        인라인 다크모드
+      </div>
 
       {/* ✅ Input 사용 */}
       <div className="space-y-2">
