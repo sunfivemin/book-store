@@ -48,14 +48,14 @@ describe('Title 컴포넌트 테스트', () => {
   it('스타일이 theme값에 맞게 적용된다 (color)', () => {
     const { container } = render(
       <ThemeProvider>
-        <Title size="sm" color="default">
+        <Title size="sm" color="primary">
           색상
         </Title>
       </ThemeProvider>
     );
 
     expect(container.firstChild).toHaveStyle({
-      color: vars.color.default,
+      color: vars.color.primary,
     });
   });
 });

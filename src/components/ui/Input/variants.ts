@@ -19,7 +19,8 @@ export const inputStyle = tv({
         'border-b border-border-input focus:border-brand-primary bg-surface-input rounded-none',
     },
     hasError: {
-      true: 'border-priority-must placeholder-priority-must', // ❌ text-priority-must 제거!
+      true: 'border-priority-must placeholder-priority-must',
+      false: '', // 명시적으로 기본값을 지정해주는 것이 안정적
     },
   },
 
@@ -27,5 +28,6 @@ export const inputStyle = tv({
   defaultVariants: {
     size: 'md',
     variant: 'outline',
+    hasError: false, // 💡 default로 에러 없음
   },
 });

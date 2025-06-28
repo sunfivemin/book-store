@@ -1,4 +1,3 @@
-// hooks/useCategory.ts
 import { useEffect, useState } from 'react';
 import { fetchCategory } from '@/api/category.api';
 import { toast } from 'react-hot-toast';
@@ -13,7 +12,7 @@ export const useCategory = () => {
         if (!category) return;
         const categoryWithAll: Category[] = [
           { category_id: 0, category_name: '전체' },
-          ...category,
+          ...category.filter(c => c.category_id !== 0), // 중복 방지
         ];
         setCategories(categoryWithAll);
       })

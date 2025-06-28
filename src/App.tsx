@@ -5,6 +5,7 @@ import Layout from '@/components/layout/Layout';
 import Error from '@/components/common/Error';
 import Home from './pages/Home';
 import { Toaster } from 'react-hot-toast';
+import Signup from './pages/Signup';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: 'books',
         element: <div>도서 목록</div>,
+      },
+      {
+        path: 'signup',
+        element: <Signup />,
       },
     ],
   },
