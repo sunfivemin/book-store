@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 import Login from './pages/Login';
+import Books from './pages/Books';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'books',
-        element: <div>도서 목록</div>,
+        element: <Books />,
       },
       {
         path: 'signup',
