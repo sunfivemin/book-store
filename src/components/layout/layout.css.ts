@@ -9,16 +9,12 @@ export const pageLayout = style({
 // className="flex flex-col min-h-screen"
 
 export const mainContainer = style({
-  width: '100%',
   margin: '0 auto',
-  padding: vars.spacing.lg,
+  padding: `${vars.spacing.lg} ${vars.spacing.md}`,
   maxWidth: vars.layout.width.large,
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: vars.color.background,
+  minWidth: vars.layout.width.large,
+  minHeight: '600px',
+  background: vars.color.background,
 
   '@media': {
     'screen and (min-width: 768px)': {

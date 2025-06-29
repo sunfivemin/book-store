@@ -9,8 +9,8 @@ interface BookItemProps {
 
 function BookItem({ book }: BookItemProps) {
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex flex-col">
-      <div className="aspect-[3/4] bg-gray-100 rounded mb-3 flex items-center justify-center overflow-hidden">
+    <div className="bg-white rounded-lg shadow p-4 flex flex-col h-full">
+      <div className="aspect-[3/4] bg-gray-100 rounded mb-3 flex items-center justify-center overflow-hidden min-h-[200px]">
         <img
           src={getImgSrc(book.id)}
           alt={book.title}

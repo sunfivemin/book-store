@@ -1,13 +1,28 @@
-// Vanilla Extract로 직접 스타일 정의 (style({}))
-import { button } from './variants';
 import clsx from 'clsx';
-import type { VariantProps } from 'tailwind-variants';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof button>;
+const intentClass = {
+  primary: 'bg-blue-500 text-white',
+  ghost: 'bg-transparent',
+  elevated: 'bg-white border border-gray-200 shadow text-gray-900',
+};
 
-export const Button = ({ intent, size, className, ...props }: ButtonProps) => {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  intent?: 'primary' | 'ghost' | 'elevated';
+  size?: 'sm' | 'md' | 'lg';
+};
+
+export const Button = ({ intent = 'elevated', size = 'md', className, ...props }: ButtonProps) => {
   return (
-    <button className={clsx(button({ intent, size }), className)} {...props} />
+    <button
+      className={clsx(
+        intentClass[intent],
+        size === 'sm' && 'px-2 py-1 text-sm',
+        size === 'md' && 'px-3 py-1.5 text-base',
+        size === 'lg' && 'px-4 py-2 text-lg',
+        'rounded transition',
+        className
+      )}
+      {...props}
+    />
   );
 };

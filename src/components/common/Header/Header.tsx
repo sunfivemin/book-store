@@ -55,11 +55,7 @@ function Header() {
             {categories.map(item => (
               <li key={item.category_id}>
                 <Link
-                  to={
-                    item.category_id === 0
-                      ? '/books'
-                      : `/books?category_id=${item.category_id}`
-                  }
+                  to="/books"
                   className={navItemStyle}
                 >
                   {item.category_name}

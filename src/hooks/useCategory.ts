@@ -10,9 +10,10 @@ export const useCategory = () => {
     fetchCategory()
       .then(category => {
         if (!category) return;
+        // '전체'를 맨 앞에 추가, 나머지는 모두 그대로 추가 (category_id: 0도 포함)
         const categoryWithAll: Category[] = [
-          { category_id: 0, category_name: '전체' },
-          ...category.filter(c => c.category_id !== 0), // 중복 방지
+          { category_id: -1, category_name: '전체' },
+          ...category,
         ];
         setCategories(categoryWithAll);
       })
