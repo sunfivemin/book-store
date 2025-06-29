@@ -1,23 +1,35 @@
 import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
+import { getToken, removeToken } from '@/utils/token';
 
 const BASE_URL = 'http://localhost:9999';
 const DEFAULT_TIMEOUT = 30000;
 
-export const createClient = (config?: AxiosRequestConfig) => {
+export const createClient = (config: AxiosRequestConfig = {}) => {
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'content-type': 'application/json',
+      Authorization: getToken() ? getToken() : '',
     },
     withCredentials: true,
     ...config,
   });
 
   axiosInstance.interceptors.response.use(
-    response => response,
-    error => Promise.reject(error)
+    (response) => {
+      return response;
+    },
+    (error) => {
+      // 401(인증 만료) 처리
+      if (error.response && error.response.status === 401) {
+        removeToken();
+        window.location.href = '/login';
+        return;
+      }
+      return Promise.reject(error);
+    }
   );
 
   return axiosInstance;

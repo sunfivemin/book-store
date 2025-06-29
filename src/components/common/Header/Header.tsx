@@ -12,10 +12,12 @@ import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { useCategory } from '@/hooks/useCategory';
+import { useAuthStore } from '@/store/authStore';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { categories } = useCategory();
+  const { isLoggedIn, storeLogout } = useAuthStore();
 
   useEffect(() => {
     const onScroll = () => {
@@ -67,16 +69,26 @@ function Header() {
           </ul>
         </nav>
 
-        {/* 로그인 / 회원가입 */}
+        {/* 로그인 / 회원가입 or 장바구니/로그아웃 */}
         <div className={authBoxStyle}>
-          <button className="flex items-center gap-1 text-sm">
-            <LogIn className="w-5 h-5" />
-            로그인
-          </button>
-          <button className="flex items-center gap-1 text-sm">
-            <UserPlus className="w-5 h-5" />
-            회원가입
-          </button>
+          {isLoggedIn ? (
+            <>
+              <Link to="/cart" className="flex items-center gap-1 text-sm">장바구니</Link>
+              <Link to="/orderList" className="flex items-center gap-1 text-sm">주문 내역</Link>
+              <button onClick={storeLogout} className="flex items-center gap-1 text-sm">로그아웃</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="flex items-center gap-1 text-sm">
+                <LogIn className="w-5 h-5" />
+                로그인
+              </Link>
+              <Link to="/signup" className="flex items-center gap-1 text-sm">
+                <UserPlus className="w-5 h-5" />
+                회원가입
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
