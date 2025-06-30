@@ -1,4 +1,4 @@
-import type { Book } from '@/models/book.model';
+import type { Book, BookDetail } from '@/models/book.model';
 import type { Pagination } from '@/models/pagination.model';
 import { httpClient } from './http';
 
@@ -14,11 +14,16 @@ interface FetchBooksResponse {
   pagination: Pagination;
 }
 
-export const fetchBooks = async (params: FetchBooksParams): Promise<FetchBooksResponse> => {
+export const fetchBooks = async (
+  params: FetchBooksParams
+): Promise<FetchBooksResponse> => {
   try {
-    const response = await httpClient.get<FetchBooksResponse>('/books', { params });
+    const response = await httpClient.get<FetchBooksResponse>('/books', {
+      params,
+    });
     return response.data;
   } catch (error) {
+    console.error('도서 목록 요청 실패:', error);
     return {
       books: [],
       pagination: {
@@ -27,4 +32,9 @@ export const fetchBooks = async (params: FetchBooksParams): Promise<FetchBooksRe
       },
     };
   }
-}; 
+};
+
+export const fetchBook = async (bookId: string) => {
+  const response = await httpClient.get<BookDetail>(`/books/${bookId}`);
+  return response.data;
+};

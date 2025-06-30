@@ -26,13 +26,13 @@ const Login = () => {
 
   const onSubmit = (data: LoginForm) => {
     login(data)
-      .then((res) => {
+      .then(res => {
         setToken(res.token);
         storeLogin(res.token);
         showAlert('로그인 완료되었습니다.');
         navigate('/');
       })
-      .catch((_err) => {
+      .catch(() => {
         showError('로그인에 실패했습니다.');
       });
   };
