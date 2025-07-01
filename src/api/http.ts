@@ -1,5 +1,8 @@
-import axios from 'axios';
-import type { AxiosRequestConfig } from 'axios';
+import axios, {
+  type AxiosRequestConfig,
+  type AxiosResponse,
+  type AxiosError,
+} from 'axios';
 import { getToken, removeToken } from '@/utils/token';
 
 const BASE_URL = 'http://localhost:9999';
@@ -10,19 +13,26 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
     baseURL: BASE_URL,
     timeout: DEFAULT_TIMEOUT,
     headers: {
-      'content-type': 'application/json',
-      Authorization: getToken() ? getToken() : '',
+      'Content-Type': 'application/json',
     },
     withCredentials: true,
     ...config,
   });
 
+  // ✅ 매 요청마다 토큰 동적 주입
+  axiosInstance.interceptors.request.use(config => {
+    const token = getToken();
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers['Authorization'] = token;
+    }
+    return config;
+  });
+
+  // ✅ 에러 응답 처리
   axiosInstance.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      // 401(인증 만료) 처리
+    (response: AxiosResponse) => response,
+    (error: AxiosError) => {
       if (error.response && error.response.status === 401) {
         removeToken();
         window.location.href = '/login';
@@ -35,4 +45,4 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
   return axiosInstance;
 };
 
-export const httpClient = createClient();
+export const httpClient = createClient(); // ✅ 필수 export

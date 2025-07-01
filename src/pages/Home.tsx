@@ -27,7 +27,7 @@ export default function Home() {
       <Button intent="primary" size="sm">
         Primary Small
       </Button>
-      <Button intent="danger" size="md">
+      <Button intent="elevated" size="md">
         Danger Medium
       </Button>
       <Button intent="ghost" size="lg">

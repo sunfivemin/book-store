@@ -14,13 +14,14 @@ function BookItem({ book, view }: BookItemProps) {
   const isList = view === 'list';
 
   return (
-    <div
-      className={clsx(
-        'bg-white rounded-lg shadow p-4 h-full',
-        isList ? 'flex flex-row gap-4 ' : 'flex flex-col'
-      )}
-    >
-      <Link to={`/book/${book.id}`}>
+    <div>
+      <Link
+        to={`/book/${book.id}`}
+        className={clsx(
+          'bg-white rounded-lg shadow p-4 h-full',
+          isList ? 'flex flex-row gap-4 ' : 'flex flex-col'
+        )}
+      >
         {/* 이미지 */}
         <div
           className={clsx(

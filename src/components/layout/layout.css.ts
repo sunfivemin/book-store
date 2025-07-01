@@ -9,6 +9,7 @@ export const pageLayout = style({
 // className="flex flex-col min-h-screen"
 
 export const mainContainer = style({
+  flex: 1,
   margin: '0 auto',
   padding: `${vars.spacing.lg} ${vars.spacing.md}`,
   maxWidth: vars.layout.width.large,
