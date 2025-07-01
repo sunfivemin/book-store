@@ -3,9 +3,18 @@ import type { BookDetail } from '@/models/book.model';
 import { Button } from '@/components/ui/Button/Button';
 import { toast } from 'react-hot-toast';
 
-import { controlButton, quantityInput, wrapper } from './AddToCart.css';
+import {
+  addedMessageWrapper,
+  addedText,
+  controlButton,
+  linkToCart,
+  quantityInput,
+  wrapper,
+} from './AddToCart.css';
+
 import { addCart } from '@/api/cart.api';
 import { useCartStore } from '@/store/cartStore';
+import { Link } from 'react-router-dom';
 
 interface Props {
   book: BookDetail;
@@ -14,6 +23,8 @@ interface Props {
 function AddToCart({ book }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState(false);
+  const [cartAdded, setCartAdded] = useState(false);
+
   const { addToCart, removeFromCart } = useCartStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,18 +41,20 @@ function AddToCart({ book }: Props) {
   };
 
   const handleAdd = async () => {
-    addToCart(book, quantity); // 1. 로컬 먼저
-    setLoading(true); // ✅ 로딩 시작
+    addToCart(book, quantity);
+    setLoading(true);
 
     try {
-      await addCart({ book_id: book.id, quantity }); // 2. 서버 요청
+      await addCart({ book_id: book.id, quantity });
       toast.success(`${quantity}권 장바구니에 추가되었습니다!`);
+      setCartAdded(true); // ✅ 메시지 표시
+      setTimeout(() => setCartAdded(false), 3000); // ✅ 3초 후 숨김
     } catch (err) {
-      removeFromCart(book.id); // 3. 실패 시 롤백
+      removeFromCart(book.id);
       toast.error('장바구니 담기 실패');
       console.error(err);
     } finally {
-      setLoading(false); // ✅ 로딩 종료
+      setLoading(false);
     }
   };
 
@@ -72,6 +85,16 @@ function AddToCart({ book }: Props) {
       <Button size="md" color="primary" onClick={handleAdd} disabled={loading}>
         장바구니 담기
       </Button>
+
+      {/* ✅ 메시지 표시 영역 */}
+      {cartAdded && (
+        <div className={addedMessageWrapper}>
+          <p className={addedText}>장바구니에 추가되었습니다.</p>
+          <Link to="/cart" className={linkToCart}>
+            장바구니로 이동
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

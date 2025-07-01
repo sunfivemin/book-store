@@ -111,10 +111,6 @@ function BookDetail() {
             <LikeButton book={book} onClick={handleLikeClick} />
           </div>
 
-          <div className={styles.likeRow}>
-            <LikeButton book={book} onClick={handleLikeClick} />
-          </div>
-
           <AddToCart book={book} />
         </div>
       </header>

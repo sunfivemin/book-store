@@ -44,3 +44,34 @@ export const controlButton = style({
     },
   },
 });
+export const addedMessageWrapper = style({
+  width: '100%',
+  marginTop: '0.5rem',
+  padding: '0.75rem 1rem',
+  borderRadius: '8px',
+  backgroundColor: vars.color.background,
+  border: `1px solid ${vars.color.border.default}`,
+  color: vars.color.text.default,
+  fontSize: vars.fontSize.sm,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '6px',
+  animation: 'fadeIn 0.3s ease-in-out',
+});
+
+export const addedText = style({
+  margin: 0,
+  fontWeight: 500,
+});
+
+export const linkToCart = style({
+  fontSize: vars.fontSize.sm,
+  textDecoration: 'underline',
+  color: vars.color.primary,
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      color: vars.color.must,
+    },
+  },
+});
