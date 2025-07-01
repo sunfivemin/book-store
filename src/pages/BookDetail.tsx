@@ -10,6 +10,7 @@ import type { BookDetail as IBookDetail } from '@/models/book.model';
 import * as styles from './BookDetail.css';
 import LikeButton from '@/components/book/LikeButton';
 import { Modal } from '@/components/ui/Modal/Modal';
+import AddToCart from '@/components/book/AddToCart';
 
 interface BookInfoItem {
   label: string;
@@ -61,10 +62,6 @@ function BookDetail() {
     toast.success('좋아요를 눌렀습니다!');
   };
 
-  const handleAddToCart = () => {
-    toast.success('장바구니에 추가되었습니다!');
-  };
-
   if (isLoading || !book) {
     return (
       <section className={styles.container}>
@@ -114,9 +111,11 @@ function BookDetail() {
             <LikeButton book={book} onClick={handleLikeClick} />
           </div>
 
-          <button className={styles.cartButton} onClick={handleAddToCart}>
-            장바구니에 담기
-          </button>
+          <div className={styles.likeRow}>
+            <LikeButton book={book} onClick={handleLikeClick} />
+          </div>
+
+          <AddToCart book={book} />
         </div>
       </header>
 
