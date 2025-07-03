@@ -45,11 +45,13 @@ export const headerContainer = style({
     },
   },
 
-  selectors: {
-    'body.scrolled &': {
-      padding: vars.spacing.md,
-      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.05)',
-      borderRadius: vars.radius.lg,
-    },
-  },
+  // selectors: {
+  //   'body.scrolled &': {
+  //     boxShadow: '0 6px 20px rgba(0, 0, 0, 0.05)',
+  //     borderRadius: vars.radius.lg,
+  //   },
+  // },
+});
+export const scrolledHeaderContainer = style({
+  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.05)',
 });

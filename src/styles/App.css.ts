@@ -11,9 +11,13 @@ export const app = style({
   // padding: vars.spacing.md,
   // transition: 'background-color 0.3s ease, color 0.3s ease',
   backgroundColor: themeContract.color.background,
-  color: themeContract.color.text,
+  color: themeContract.color.text.strong,
   minHeight: '100vh',
   padding: themeContract.spacing.md,
   transition: 'background-color 0.3s ease, color 0.3s ease',
   fontFamily: themeContract.font.family,
+});
+
+export const htmlStyle = style({
+  scrollbarGutter: 'stable',
 });

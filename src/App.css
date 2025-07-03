@@ -4,3 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+
+html {
+  scrollbar-gutter: stable; /*스크롤바 유무에 따라 레이아웃이 흔들리는 것을 막아준다.*/
+}
+
+body {
+  margin: 0;
+  overflow-y: scroll; /* 항상 스크롤바 공간 확보 */
+}

@@ -26,8 +26,14 @@ globalStyle('body', {
   fontFamily: '"Pretendard", system-ui, sans-serif',
   backgroundColor: '#ffffff',
   color: '#111111',
+  overflowY: 'scroll', // 항상 스크롤바 공간 확보
+  WebkitFontSmoothing: 'antialiased', // 텍스트 흔들림 방지 (특히 크롬)
 });
 
 globalStyle('*', {
   boxSizing: 'border-box',
+});
+
+globalStyle('html', {
+  scrollbarGutter: 'stable', // 스크롤바 유무에 따른 layout 밀림 방지
 });

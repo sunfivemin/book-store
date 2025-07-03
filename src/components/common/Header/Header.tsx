@@ -3,6 +3,7 @@ import {
   navItemStyle,
   authBoxStyle,
   headerContainer,
+  scrolledHeaderContainer,
 } from './header.css';
 import { headerStyle } from './variants';
 
@@ -21,9 +22,7 @@ function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      const scrolled = window.scrollY > 10;
-      setIsScrolled(scrolled);
-      document.body.classList.toggle('scrolled', scrolled);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -38,7 +37,9 @@ function Header() {
         })
       )}
     >
-      <div className={headerContainer}>
+      <div
+        className={clsx(headerContainer, isScrolled && scrolledHeaderContainer)}
+      >
         {/* 로고 영역 */}
         <div className="flex items-center gap-3">
           <Link to="/">
@@ -54,10 +55,7 @@ function Header() {
           <ul className="flex items-center gap-4">
             {categories.map(item => (
               <li key={item.category_id}>
-                <Link
-                  to="/books"
-                  className={navItemStyle}
-                >
+                <Link to="/books" className={navItemStyle}>
                   {item.category_name}
                 </Link>
               </li>
@@ -69,9 +67,18 @@ function Header() {
         <div className={authBoxStyle}>
           {isLoggedIn ? (
             <>
-              <Link to="/cart" className="flex items-center gap-1 text-sm">장바구니</Link>
-              <Link to="/orderList" className="flex items-center gap-1 text-sm">주문 내역</Link>
-              <button onClick={storeLogout} className="flex items-center gap-1 text-sm">로그아웃</button>
+              <Link to="/cart" className="flex items-center gap-1 text-sm">
+                장바구니
+              </Link>
+              <Link to="/orderList" className="flex items-center gap-1 text-sm">
+                주문 내역
+              </Link>
+              <button
+                onClick={storeLogout}
+                className="flex items-center gap-1 text-sm"
+              >
+                로그아웃
+              </button>
             </>
           ) : (
             <>

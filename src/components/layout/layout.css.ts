@@ -12,8 +12,8 @@ export const mainContainer = style({
   flex: 1,
   margin: '0 auto',
   padding: `${vars.spacing.lg} ${vars.spacing.md}`,
+  width: '100%',
   maxWidth: vars.layout.width.large,
-  minWidth: vars.layout.width.large,
   minHeight: '600px',
   background: vars.color.background,
 
