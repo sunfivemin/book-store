@@ -5,7 +5,11 @@ import axios, {
 } from 'axios';
 import { getToken, removeToken } from '@/utils/token';
 
-const BASE_URL = 'http://localhost:9999';
+const isDev = import.meta.env.DEV;
+
+const BASE_URL = isDev
+  ? 'http://localhost:9999'
+  : 'https://book-shop-pf1j.onrender.com';
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config: AxiosRequestConfig = {}) => {
