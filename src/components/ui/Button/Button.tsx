@@ -4,14 +4,20 @@ const intentClass = {
   primary: 'bg-blue-500 text-white',
   ghost: 'bg-transparent',
   elevated: 'bg-white border border-gray-200 shadow text-gray-900',
+  danger: 'bg-red-500 text-white',
 };
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  intent?: 'primary' | 'ghost' | 'elevated';
+  intent?: 'primary' | 'ghost' | 'elevated' | 'danger';
   size?: 'sm' | 'md' | 'lg';
 };
 
-export const Button = ({ intent = 'elevated', size = 'md', className, ...props }: ButtonProps) => {
+export const Button = ({
+  intent = 'elevated',
+  size = 'md',
+  className,
+  ...props
+}: ButtonProps) => {
   return (
     <button
       className={clsx(

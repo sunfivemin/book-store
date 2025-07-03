@@ -2,14 +2,15 @@
 import { tv } from 'tailwind-variants';
 
 export const headerStyle = tv({
-  base: 'w-full sticky z-50 transition-all duration-300',
+  base: 'w-full sticky z-50 transition-shadow ',
+  //transition-padding duration-300
   variants: {
     variant: {
       default: 'top-0 bg-background',
       scrolled: 'top-4 bg-background',
     },
     size: {
-      sm: 'h-12 text-base',
+      sm: 'h-20 text-base',
       lg: 'h-20 text-xl',
     },
   },
