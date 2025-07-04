@@ -1,3 +1,4 @@
+// src/api/http.ts
 import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,
@@ -10,6 +11,7 @@ const isDev = import.meta.env.DEV;
 const BASE_URL = isDev
   ? 'http://localhost:9999'
   : 'https://book-shop-pf1j.onrender.com';
+
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config: AxiosRequestConfig = {}) => {
@@ -23,7 +25,6 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
     ...config,
   });
 
-  // ✅ 매 요청마다 토큰 동적 주입
   axiosInstance.interceptors.request.use(config => {
     const token = getToken();
     if (token) {
@@ -33,11 +34,10 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
     return config;
   });
 
-  // ✅ 에러 응답 처리
   axiosInstance.interceptors.response.use(
     (response: AxiosResponse) => response,
     (error: AxiosError) => {
-      if (error.response && error.response.status === 401) {
+      if (error.response?.status === 401) {
         removeToken();
         window.location.href = '/login';
         return;
@@ -49,4 +49,23 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
   return axiosInstance;
 };
 
-export const httpClient = createClient(); // ✅ 필수 export
+export const httpClient = createClient();
+
+// ✅ 공통 요청 핸들러 (제네릭 사용으로 any 제거)
+type Method = 'get' | 'post' | 'put' | 'delete';
+
+export const requestHandler = async <Payload = unknown, Result = unknown>(
+  method: Method,
+  url: string,
+  payload?: Payload
+): Promise<Result> => {
+  const config = {
+    get: () => httpClient.get<Result>(url),
+    post: () => httpClient.post<Result>(url, payload),
+    put: () => httpClient.put<Result>(url, payload),
+    delete: () => httpClient.delete<Result>(url),
+  };
+
+  const response = await config[method]();
+  return response.data;
+};

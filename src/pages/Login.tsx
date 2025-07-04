@@ -1,40 +1,21 @@
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Title from '@/components/common/Title';
 import { Input } from '@/components/ui/Input/Input';
 import { Button } from '@/components/ui/Button/Button';
-import { login } from '@/api/auth.api';
-import { useAlert } from '@/hooks/useAlert';
-import { useAuthStore } from '@/store/authStore';
-import { setToken } from '@/utils/token';
-
-interface LoginForm {
-  email: string;
-  password: string;
-}
+import { useAuth } from '@/hooks/useAuth';
+import type { LoginForm } from '@/models/user.model';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { storeLogin } = useAuthStore();
-  const { success: showAlert, error: showError } = useAlert();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>();
+  const { userLogin } = useAuth();
 
   const onSubmit = (data: LoginForm) => {
-    login(data)
-      .then(res => {
-        setToken(res.token);
-        storeLogin(res.token);
-        showAlert('로그인 완료되었습니다.');
-        navigate('/');
-      })
-      .catch(() => {
-        showError('로그인에 실패했습니다.');
-      });
+    userLogin(data);
   };
 
   return (

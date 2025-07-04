@@ -3,13 +3,13 @@ import BooksFilter from '@/components/books/BooksFilter';
 import BooksViewSwitcher from '@/components/books/BooksViewSwitcher';
 import BooksList from '@/components/books/BooksList';
 import BooksEmpty from '@/components/books/BooksEmpty';
+import BooksLoading from '@/components/books/BooksLoading';
 import Pagination from '@/components/books/Pagination';
 import { useBooks } from '@/hooks/useBooks';
 import { mainContainer } from '@/components/layout/layout.css';
 
 function Books() {
-  const { books, pagination } = useBooks();
-  const isEmpty = books.length === 0;
+  const { books, pagination, isBooksLoading, isEmpty } = useBooks();
 
   return (
     <section className={mainContainer}>
@@ -19,12 +19,21 @@ function Books() {
         </Title>
         <BooksViewSwitcher />
       </div>
+
       <div className="mt-6">
         <BooksFilter />
       </div>
+
       <div className="mt-8 min-h-[600px] flex-1 h-full flex items-center justify-center">
-        {isEmpty ? <BooksEmpty /> : <BooksList books={books} />}
+        {isBooksLoading ? (
+          <BooksLoading />
+        ) : isEmpty ? (
+          <BooksEmpty />
+        ) : (
+          <BooksList books={books} />
+        )}
       </div>
+
       <div className="mt-8">
         <Pagination pagination={pagination} />
       </div>
