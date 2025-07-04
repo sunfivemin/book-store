@@ -8,9 +8,11 @@ export interface Order {
   total_quantity: number;
   total_price: number;
 }
-
 export interface OrderSheet {
-  items: number[];
+  items: {
+    book_id: number;
+    quantity: number;
+  }[];
   totalQuantity: number;
   totalPrice: number;
   firstBookTitle: string;

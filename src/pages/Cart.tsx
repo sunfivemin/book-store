@@ -56,7 +56,12 @@ function Cart() {
   const handleOrderConfirm = () => {
     const firstBook = carts.find(cart => checkedItems.includes(cart.id));
     const orderData: Omit<OrderSheet, 'delivery'> = {
-      items: checkedItems,
+      items: carts
+        .filter(cart => checkedItems.includes(cart.id))
+        .map(cart => ({
+          book_id: cart.book_id,
+          quantity: cart.quantity,
+        })),
       totalPrice,
       totalQuantity,
       firstBookTitle: firstBook?.title ?? '제목 없음',
