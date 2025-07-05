@@ -1,16 +1,16 @@
+// src/pages/BookDetail.tsx
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-
 import { useBook } from '@/hooks/useBook';
 import { getImgSrc } from '@/utils/image';
 import { formatDate, formatNumber } from '@/utils/format';
 import type { BookDetail as IBookDetail } from '@/models/book.model';
-
 import * as styles from './BookDetail.css';
 import LikeButton from '@/components/book/LikeButton';
 import { Modal } from '@/components/ui/Modal/Modal';
 import AddToCart from '@/components/book/AddToCart';
+import BookReview from '@/components/book/BookReview';
 
 interface BookInfoItem {
   label: string;
@@ -48,17 +48,17 @@ const bookInfoList: BookInfoItem[] = [
 
 function BookDetail() {
   const { bookId } = useParams<{ bookId: string }>();
-  const { book, isLoading, error, likeOrUnlike, isLoggedIn } = useBook(bookId);
-
+  const { book, isLoading, error, likeOrUnlike, isLoggedIn, reviews } =
+    useBook(bookId);
   const [isModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLikeClick = () => {
     if (!isLoggedIn) {
-      setModalOpen(true); // ✅ 여기서만 모달 제어
+      setModalOpen(true);
       return;
     }
-    likeOrUnlike(); // ✅ 좋아요 토글
+    likeOrUnlike();
     toast.success('좋아요를 눌렀습니다!');
   };
 
@@ -88,29 +88,22 @@ function BookDetail() {
             className={styles.image}
           />
         </div>
-
         <div className={styles.content}>
           <h1 className={styles.bookTitle}>{book.title}</h1>
-
           <dl className={styles.dl}>
             {bookInfoList.map(item => (
               <div key={item.key} className={styles.dlRow}>
                 <dt className={styles.dlLabel}>{item.label}</dt>
                 <dd className={styles.dlValue}>
-                  {item.filter
-                    ? item.filter(book)
-                    : book[item.key as keyof IBookDetail]}
+                  {item.filter ? item.filter(book) : book[item.key]}
                 </dd>
               </div>
             ))}
           </dl>
-
           <p className={styles.text}>{book.summary}</p>
-
           <div className={styles.likeRow}>
             <LikeButton book={book} onClick={handleLikeClick} />
           </div>
-
           <AddToCart book={book} />
         </div>
       </header>
@@ -125,7 +118,11 @@ function BookDetail() {
         <pre className={styles.pre}>{book.contents}</pre>
       </section>
 
-      {/* ✅ 로그인 필요 모달 */}
+      <section>
+        <h2 className={styles.sectionTitle}>리뷰</h2>
+        <BookReview reviews={reviews} />
+      </section>
+
       <Modal
         open={isModalOpen}
         backdrop="dark"

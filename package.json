@@ -20,6 +20,7 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^12.19.1",
     "lucide-react": "^0.523.0",
+    "msw": "^2.10.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.59.0",
@@ -32,11 +33,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@faker-js/faker": "^9.9.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/axios": "^0.9.36",
     "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.10",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vanilla-extract/vite-plugin": "^5.0.6",
@@ -48,6 +51,7 @@
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "msm": "^0.0.4",
     "postcss": "^8.5.6",
     "postcss-nested": "^7.0.2",
     "tailwindcss": "^3.4.1",
@@ -55,5 +59,10 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

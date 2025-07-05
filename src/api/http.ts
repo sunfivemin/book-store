@@ -51,7 +51,6 @@ export const createClient = (config: AxiosRequestConfig = {}) => {
 
 export const httpClient = createClient();
 
-// ✅ 공통 요청 핸들러 (제네릭 사용으로 any 제거)
 type Method = 'get' | 'post' | 'put' | 'delete';
 
 export const requestHandler = async <Payload = unknown, Result = unknown>(
@@ -67,5 +66,5 @@ export const requestHandler = async <Payload = unknown, Result = unknown>(
   };
 
   const response = await config[method]();
-  return response.data;
+  return response.data as Result; // 타입 보장
 };
