@@ -48,8 +48,15 @@ const bookInfoList: BookInfoItem[] = [
 
 function BookDetail() {
   const { bookId } = useParams<{ bookId: string }>();
-  const { book, isLoading, error, likeOrUnlike, isLoggedIn, reviews } =
-    useBook(bookId);
+  const {
+    book,
+    isLoading,
+    error,
+    likeOrUnlike,
+    isLoggedIn,
+    reviews,
+    addReview,
+  } = useBook(bookId);
   const [isModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -120,7 +127,7 @@ function BookDetail() {
 
       <section>
         <h2 className={styles.sectionTitle}>리뷰</h2>
-        <BookReview reviews={reviews} />
+        <BookReview reviews={reviews} onAdd={addReview} />
       </section>
 
       <Modal

@@ -1,22 +1,25 @@
-// src/components/book/BookReview.tsx
-import type { BookReviewItem as BookReviewItemType } from '@/models/book.model';
+import type {
+  BookReviewItem as BookReviewItemType,
+  BookReviewItemWrite,
+} from '@/models/book.model';
 import BookReviewItem from './BookReviewItem';
+import BookReviewAdd from './BookReviewAdd';
 import * as styles from './BookReview.css';
 
 interface Props {
   reviews: BookReviewItemType[];
+  onAdd: (data: BookReviewItemWrite) => void;
 }
 
-function BookReview({ reviews }: Props) {
+function BookReview({ reviews, onAdd }: Props) {
   return (
     <div className={styles.reviewList}>
+      <BookReviewAdd onAdd={onAdd} />
       {reviews.length === 0 ? (
         <p className={styles.empty}>등록된 리뷰가 없습니다.</p>
       ) : (
         reviews.map(review => (
-          <div key={review.id}>
-            <BookReviewItem review={review} />
-          </div>
+          <BookReviewItem key={review.id} review={review} />
         ))
       )}
     </div>

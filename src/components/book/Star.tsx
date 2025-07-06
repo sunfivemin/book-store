@@ -1,5 +1,4 @@
-// src/components/book/Star.tsx
-import { FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa6';
 import * as styles from './BookReview.css';
 
 interface Props {
@@ -9,8 +8,8 @@ interface Props {
 function Star({ score }: Props) {
   return (
     <div className={styles.starWrapper}>
-      {Array.from({ length: score }).map((_, index) => (
-        <FaStar key={index} className={styles.star} />
+      {Array.from({ length: score }).map((_, i) => (
+        <FaStar key={i} className={styles.star} />
       ))}
     </div>
   );

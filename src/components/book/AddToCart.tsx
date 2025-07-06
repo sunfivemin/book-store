@@ -82,7 +82,7 @@ function AddToCart({ book }: Props) {
       >
         +
       </button>
-      <Button size="md" color="primary" onClick={handleAdd} disabled={loading}>
+      <Button size="md" intent="primary" onClick={handleAdd} disabled={loading}>
         장바구니 담기
       </Button>
 

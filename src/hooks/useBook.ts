@@ -1,11 +1,17 @@
+import { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
+
 import { fetchBook, likeBook, unlikeBook } from '@/api/books.api';
 import { addCart } from '@/api/cart.api';
-import type { BookDetail, BookReviewItem } from '@/models/book.model';
-import { useEffect, useState } from 'react';
+import { fetchBookReview, addBookReview } from '@/api/review.api';
 import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '@/store/cartStore';
-import { toast } from 'react-hot-toast';
-import { fetchBookReview } from '@/api/review.api';
+
+import type {
+  BookDetail,
+  BookReviewItem,
+  BookReviewItemWrite,
+} from '@/models/book.model';
 
 export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
@@ -17,6 +23,7 @@ export const useBook = (bookId: string | undefined) => {
   const { isLoggedIn } = useAuthStore();
   const { addToCart, removeFromCart } = useCartStore();
 
+  // ❤️ 좋아요/취소
   const likeOrUnlike = () => {
     if (!book) return;
     const updated = { ...book };
@@ -28,6 +35,7 @@ export const useBook = (bookId: string | undefined) => {
     });
   };
 
+  // 🛒 장바구니 추가
   const addBookToCart = async (quantity: number) => {
     if (!book) return;
     addToCart(book, quantity);
@@ -44,6 +52,19 @@ export const useBook = (bookId: string | undefined) => {
     }
   };
 
+  // ✍️ 리뷰 작성
+  const addReview = (data: BookReviewItemWrite) => {
+    if (!book) return;
+    addBookReview(book.id.toString(), data)
+      .then(res => {
+        toast.success(res.message || '리뷰가 등록되었습니다.');
+        return fetchBookReview(book.id.toString());
+      })
+      .then(setReview)
+      .catch(() => toast.error('리뷰 등록 중 오류가 발생했습니다.'));
+  };
+
+  // 📘 책 정보 가져오기
   useEffect(() => {
     if (!bookId) return;
     setIsLoading(true);
@@ -56,9 +77,10 @@ export const useBook = (bookId: string | undefined) => {
       .finally(() => setIsLoading(false));
   }, [bookId]);
 
+  // 💬 리뷰 가져오기
   useEffect(() => {
     if (!bookId) return;
-    fetchBookReview(bookId).then(reviews => setReview(reviews));
+    fetchBookReview(bookId).then(setReview);
   }, [bookId]);
 
   return {
@@ -70,5 +92,6 @@ export const useBook = (bookId: string | undefined) => {
     addBookToCart,
     cartAdded,
     reviews,
+    addReview,
   };
 };

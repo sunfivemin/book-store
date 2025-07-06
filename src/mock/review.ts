@@ -23,3 +23,15 @@ export const reviewsById = http.get(
     return HttpResponse.json(data);
   }
 );
+
+export const addReview = http.post(
+  'http://localhost:9999/reviews/:bookId',
+  async ({ request }) => {
+    const body = await request.json();
+    console.log('📦 리뷰 등록 요청:', body);
+    return HttpResponse.json(
+      { message: '리뷰가 등록되었습니다.' },
+      { status: 200 }
+    );
+  }
+);

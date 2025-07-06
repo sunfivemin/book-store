@@ -1,7 +1,4 @@
 import { setupWorker } from 'msw/browser';
-import { reviewsById } from './review';
+import { reviewsById, addReview } from './review';
 
-export const worker = setupWorker(
-  reviewsById
-  // , booksHandler, authHandler 등 추가 가능
-);
+export const worker = setupWorker(reviewsById, addReview);
