@@ -1,10 +1,10 @@
+// src/components/common/Title.tsx
 import { titleColorStyle, titleSizeStyle } from './title.css';
-import type { HeadingSize, TitleColorKey } from '@/styles/theme.css';
 
 interface Props {
   children: React.ReactNode;
-  size: HeadingSize;
-  color: TitleColorKey;
+  size: keyof typeof titleSizeStyle;
+  color: keyof typeof titleColorStyle;
 }
 
 function Title({ children, size, color }: Props) {
