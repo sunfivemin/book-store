@@ -15,7 +15,7 @@ export const button = style({
 
 export const heart = style({
   color: vars.color.text.weak,
-  transition: vars.transition.fast,
+  // transition: vars.transition.fast,
   selectors: {
     '&:hover': {
       color: vars.color.must,

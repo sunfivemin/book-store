@@ -1,4 +1,4 @@
-// src/pages/orderList.css.ts
+// src/pages/OrderList.css.ts
 import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css';
 
@@ -11,23 +11,19 @@ export const table = style({
   width: '100%',
   borderCollapse: 'collapse',
   fontSize: vars.fontSize.sm,
-  selectors: {
-    '& thead th': {
-      fontWeight: vars.fontWeight.medium,
-      borderBottom: `1px solid ${vars.color.border}`,
-      padding: vars.spacing.sm,
-      backgroundColor: vars.color.background,
-      textAlign: 'left',
-    },
-    '& tbody td': {
-      padding: vars.spacing.sm,
-      borderBottom: `1px solid ${vars.color.surfaceHover}`,
-    },
-  },
 });
 
-export const detailRow = style({
-  backgroundColor: vars.color.surfaceHover,
+export const th = style({
+  fontWeight: vars.fontWeight.medium,
+  borderBottom: `1px solid ${vars.color.border.default}`,
+  padding: vars.spacing.sm,
+  backgroundColor: vars.color.background,
+  textAlign: 'left',
+});
+
+export const td = style({
+  padding: vars.spacing.sm,
+  borderBottom: `1px solid ${vars.color.surfaceHover}`,
 });
 
 export const detailBox = style({
@@ -37,7 +33,7 @@ export const detailBox = style({
   gap: vars.spacing.sm,
   backgroundColor: '#fff',
   borderRadius: vars.radius.md,
-  boxShadow: `0 0 0 1px ${vars.color.border}`,
+  boxShadow: `0 0 0 1px ${vars.color.border.default}`,
 });
 
 export const detailItem = style({

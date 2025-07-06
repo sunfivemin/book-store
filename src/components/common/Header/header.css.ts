@@ -1,6 +1,6 @@
 // src/components/common/Header/header.css.ts
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { themeContract, vars } from '@/styles/theme.css';
 
 export const logoStyle = style({
   width: '165px',
@@ -10,7 +10,7 @@ export const logoStyle = style({
 export const navItemStyle = style({
   fontWeight: 700,
   fontSize: vars.fontSize.lg,
-  color: vars.color.text.default,
+  color: themeContract.color.text.default,
   padding: `${vars.spacing.sm} ${vars.spacing.md}`,
   selectors: {
     '&:hover': {
@@ -33,7 +33,7 @@ export const headerContainer = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   borderRadius: vars.radius.lg,
-  backgroundColor: vars.color.background,
+  backgroundColor: themeContract.color.background,
   transition: 'all 0.3s ease-in-out',
 
   '@media': {

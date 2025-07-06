@@ -1,19 +1,17 @@
+// src/providers/ThemeProvider.tsx
 import { useEffect, useState } from 'react';
-import { darkThemeClass } from '@/styles/theme.css';
+import { darkThemeClass, lightThemeClass } from '@/styles/theme.css';
 import { ThemeContext } from '@/contexts/ThemeContext';
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark');
-    }
-    return false;
-  });
+  const [isDark, setIsDark] = useState(() =>
+    document.documentElement.classList.contains(darkThemeClass)
+  );
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle('dark', isDark);
-    root.classList.toggle(darkThemeClass, isDark);
+    root.classList.remove(isDark ? lightThemeClass : darkThemeClass);
+    root.classList.add(isDark ? darkThemeClass : lightThemeClass);
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(prev => !prev);

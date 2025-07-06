@@ -6,37 +6,35 @@ import {
 import { colorTokens } from './tokens/colors';
 import { darkColorTokens } from './tokens/darkColors';
 
-// 🌈 기본 테마 정의
+// 1. 기본 테마 정의
 export const vars = createGlobalTheme(':root', {
   color: {
     primary: colorTokens.brand.primary,
     secondary: colorTokens.brand.secondary,
-
     must: colorTokens.priority.must,
     should: colorTokens.priority.should,
     remind: colorTokens.priority.remind,
-
     doneBg: colorTokens.status.doneBg,
     disabledText: colorTokens.status.disabledText,
     success: colorTokens.status.success,
-
     error: colorTokens.priority.must,
     background: colorTokens.surface.base,
     input: colorTokens.surface.input,
     surfaceHover: colorTokens.surface.hover,
-
     text: {
       default: colorTokens.text.default,
       light: colorTokens.text.light,
       strong: colorTokens.text.strong,
       weak: colorTokens.text.weak,
     },
-
     border: {
       default: colorTokens.border.default,
       input: colorTokens.border.input,
       popup: colorTokens.border.popup,
     },
+  },
+  font: {
+    family: 'var(--font-pretendard), system-ui, sans-serif',
   },
   spacing: {
     sm: '0.5rem',
@@ -65,62 +63,22 @@ export const vars = createGlobalTheme(':root', {
       small: '320px',
     },
   },
-  font: {
-    family: 'var(--font-pretendard), system-ui, sans-serif',
-  },
   radius: {
     sm: '4px',
     md: '8px',
     lg: '12px',
-    xl: '16px',
-  },
-  zIndex: {
-    base: '0',
-    dropdown: '10',
-    sticky: '20',
-    fixed: '30',
-    modal: '40',
-    popover: '50',
-    tooltip: '60',
   },
   transition: {
     fast: '0.2s ease-in-out',
     normal: '0.3s ease-in-out',
     slow: '0.5s ease-in-out',
   },
-  lineHeight: {
-    none: '1',
-    tight: '1.25',
-    snug: '1.375',
-    normal: '1.5',
-    relaxed: '1.625',
-    loose: '2',
-  },
-  breakpoint: {
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
-    xl: '1280px',
-    '2xl': '1536px',
-  },
 });
 
-// 타입 유틸
-export type HeadingSize = keyof typeof vars.fontSize;
-export type TitleColorKey =
-  | 'primary'
-  | 'secondary'
-  | 'must'
-  | 'should'
-  | 'remind'
-  | 'error'
-  | 'background'
-  | 'input'
-  | 'surfaceHover';
-
-// 🌘 다크 테마 정의
+// 2. 다크 테마 선언을 위한 contract
 export const themeContract = createThemeContract(vars);
 
+// 3. 다크 테마 정의
 export const darkThemeClass = createTheme(themeContract, {
   color: {
     primary: darkColorTokens.brand.primary,
@@ -147,15 +105,15 @@ export const darkThemeClass = createTheme(themeContract, {
       popup: darkColorTokens.border.popup,
     },
   },
+  font: vars.font,
   spacing: vars.spacing,
   fontSize: vars.fontSize,
-  heading: vars.heading,
   fontWeight: vars.fontWeight,
+  heading: vars.heading,
   layout: vars.layout,
-  font: vars.font,
   radius: vars.radius,
-  zIndex: vars.zIndex,
   transition: vars.transition,
-  lineHeight: vars.lineHeight,
-  breakpoint: vars.breakpoint,
 });
+
+// 4. light 클래스명만 export
+export const lightThemeClass = 'light-theme';

@@ -4,6 +4,8 @@ import Title from '@/components/common/Title';
 import {
   wrapper,
   table,
+  th,
+  td,
   detailBox,
   detailItem,
   bookTitle,
@@ -26,30 +28,30 @@ function OrderList() {
         <table className={table}>
           <thead>
             <tr>
-              <th>id</th>
-              <th>주문일자</th>
-              <th>주소</th>
-              <th>수령인</th>
-              <th>전화번호</th>
-              <th>대표상품명</th>
-              <th>수량</th>
-              <th>금액</th>
-              <th></th>
+              <th className={th}>id</th>
+              <th className={th}>주문일자</th>
+              <th className={th}>주소</th>
+              <th className={th}>수령인</th>
+              <th className={th}>전화번호</th>
+              <th className={th}>대표상품명</th>
+              <th className={th}>수량</th>
+              <th className={th}>금액</th>
+              <th className={th}></th>
             </tr>
           </thead>
           <tbody>
             {orders.map(order => (
               <React.Fragment key={order.id}>
                 <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.created_at.split('T')[0]}</td>
-                  <td>{order.address}</td>
-                  <td>{order.receiver}</td>
-                  <td>{order.contact}</td>
-                  <td>{order.book_title}</td>
-                  <td>{order.total_quantity}</td>
-                  <td>{formatNumber(order.total_price)} 원</td>
-                  <td>
+                  <td className={td}>{order.id}</td>
+                  <td className={td}>{order.created_at.split('T')[0]}</td>
+                  <td className={td}>{order.address}</td>
+                  <td className={td}>{order.receiver}</td>
+                  <td className={td}>{order.contact}</td>
+                  <td className={td}>{order.book_title}</td>
+                  <td className={td}>{order.total_quantity}</td>
+                  <td className={td}>{formatNumber(order.total_price)} 원</td>
+                  <td className={td}>
                     <Button
                       size="sm"
                       intent="primary"
@@ -62,7 +64,7 @@ function OrderList() {
 
                 {selectedItemId === order.id && order.detail && (
                   <tr>
-                    <td colSpan={9}>
+                    <td className={td} colSpan={9}>
                       <div className={detailBox}>
                         {order.detail.map(item => (
                           <div key={item.book_id} className={detailItem}>

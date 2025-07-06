@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '@/styles/theme.css';
+import { themeContract, vars } from '@/styles/theme.css';
 
 export const pageLayout = style({
   display: 'flex',
@@ -15,7 +15,7 @@ export const mainContainer = style({
   width: '100%',
   maxWidth: vars.layout.width.large,
   minHeight: '600px',
-  background: vars.color.background,
+  background: themeContract.color.background,
 
   '@media': {
     'screen and (min-width: 768px)': {

@@ -1,3 +1,4 @@
+// src/components/layout/Header.tsx
 import {
   logoStyle,
   navItemStyle,
@@ -8,17 +9,20 @@ import {
 import { headerStyle } from './variants';
 
 import logo from '@/assets/logo.svg';
-import { LogIn, UserPlus } from 'lucide-react';
+import { User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCategory } from '@/hooks/useCategory';
 import { useAuthStore } from '@/store/authStore';
+import Dropdown from '@/components/ui/Dropdown';
+import DarkModeToggle from '@/components/ui/DarkModeToggle';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { categories } = useCategory();
   const { isLoggedIn, storeLogout } = useAuthStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,6 +31,19 @@ function Header() {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const dropdownItems = isLoggedIn
+    ? [
+        { label: '🛒 장바구니', value: 'cart' },
+        { label: '📦 주문 내역', value: 'orders' },
+        { label: '🚪 로그아웃', value: 'logout' },
+        { label: <DarkModeToggle />, onClick: () => {} },
+      ]
+    : [
+        { label: '➡️ 로그인', value: 'login' },
+        { label: '👤 회원가입', value: 'signup' },
+        { label: <DarkModeToggle />, onClick: () => {} },
+      ];
 
   return (
     <header
@@ -40,17 +57,10 @@ function Header() {
       <div
         className={clsx(headerContainer, isScrolled && scrolledHeaderContainer)}
       >
-        {/* 로고 영역 */}
-        <div className="flex items-center gap-3">
-          <Link to="/">
-            <img src={logo} alt="BOOKSTORE 로고" className={logoStyle} />
-          </Link>
-          <h1 className="text-xl font-bold leading-none">
-            <span className="sr-only">BOOKSTORE</span>
-          </h1>
-        </div>
+        <Link to="/">
+          <img src={logo} alt="BOOKSTORE 로고" className={logoStyle} />
+        </Link>
 
-        {/* 카테고리 네비게이션 */}
         <nav>
           <ul className="flex items-center gap-4">
             {categories.map(item => (
@@ -63,35 +73,19 @@ function Header() {
           </ul>
         </nav>
 
-        {/* 로그인 / 회원가입 or 장바구니/로그아웃 */}
         <div className={authBoxStyle}>
-          {isLoggedIn ? (
-            <>
-              <Link to="/cart" className="flex items-center gap-1 text-sm">
-                장바구니
-              </Link>
-              <Link to="/orderList" className="flex items-center gap-1 text-sm">
-                주문 내역
-              </Link>
-              <button
-                onClick={storeLogout}
-                className="flex items-center gap-1 text-sm"
-              >
-                로그아웃
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="flex items-center gap-1 text-sm">
-                <LogIn className="w-5 h-5" />
-                로그인
-              </Link>
-              <Link to="/signup" className="flex items-center gap-1 text-sm">
-                <UserPlus className="w-5 h-5" />
-                회원가입
-              </Link>
-            </>
-          )}
+          <Dropdown
+            items={dropdownItems}
+            value={''}
+            onChange={v => {
+              if (v === 'login') navigate('/login');
+              if (v === 'signup') navigate('/signup');
+              if (v === 'cart') navigate('/cart');
+              if (v === 'orders') navigate('/orderList');
+              if (v === 'logout') storeLogout();
+            }}
+            label={<User className="w-6 h-6" />}
+          />
         </div>
       </div>
     </header>

@@ -55,7 +55,6 @@ export const sectionTitle = style({
 export const text = style({
   fontSize: vars.fontSize.sm,
   color: vars.color.text.default,
-  lineHeight: vars.lineHeight.relaxed,
 });
 
 export const likeRow = style({
@@ -86,7 +85,7 @@ export const cartButton = style({
   fontSize: vars.fontSize.sm,
   borderRadius: vars.radius.md,
   width: 'fit-content',
-  transition: vars.transition.fast,
+  // transition: vars.transition.fast,
   selectors: {
     '&:hover': {
       backgroundColor: vars.color.secondary,
@@ -98,7 +97,6 @@ export const pre = style({
   whiteSpace: 'pre-line',
   fontSize: vars.fontSize.sm,
   color: vars.color.text.default,
-  lineHeight: vars.lineHeight.relaxed,
 });
 
 export const dl = style({
