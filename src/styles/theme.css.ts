@@ -90,7 +90,7 @@ export const darkThemeClass = createTheme(themeContract, {
     disabledText: darkColorTokens.status.disabledText,
     success: darkColorTokens.status.success,
     error: darkColorTokens.priority.must,
-    background: darkColorTokens.surface.base,
+    background: darkColorTokens.nav.inactive,
     input: darkColorTokens.surface.input,
     surfaceHover: darkColorTokens.surface.hover,
     text: {

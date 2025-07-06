@@ -15,6 +15,8 @@ export const mainContainer = style({
   width: '100%',
   maxWidth: vars.layout.width.large,
   minHeight: '600px',
+  borderRadius: vars.radius.lg,
+  transition: 'all 0.3s ease-in-out',
   background: themeContract.color.background,
 
   '@media': {

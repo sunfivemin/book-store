@@ -74,7 +74,14 @@ function Header() {
           <ul className="flex items-center gap-4">
             {categories.map(item => (
               <li key={item.category_id}>
-                <Link to="/books" className={navItemStyle}>
+                <Link
+                  to={
+                    item.category_id === -1
+                      ? '/books'
+                      : `/books?category_id=${item.category_id}`
+                  }
+                  className={navItemStyle}
+                >
                   {item.category_name}
                 </Link>
               </li>

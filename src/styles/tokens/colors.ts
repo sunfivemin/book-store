@@ -23,7 +23,7 @@ export const colorTokens = {
     weak: colors.gray[500],
   },
   surface: {
-    base: colors.white,
+    base: '#ffffff',
     card: colors.white,
     input: colors.gray[50],
     popup: colors.white,

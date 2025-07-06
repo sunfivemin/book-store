@@ -23,7 +23,7 @@ export const darkColorTokens = {
   },
   nav: {
     active: colors.zinc[300],
-    inactive: colors.zinc[500],
+    inactive: colors.zinc[600],
   },
   surface: {
     base: '#1e1e1e',
