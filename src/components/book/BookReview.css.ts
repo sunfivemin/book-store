@@ -7,6 +7,7 @@ export const reviewList = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  marginTop: '2rem',
 });
 
 export const empty = style({

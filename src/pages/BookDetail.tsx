@@ -1,4 +1,3 @@
-// src/pages/BookDetail.tsx
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -11,6 +10,7 @@ import LikeButton from '@/components/book/LikeButton';
 import { Modal } from '@/components/ui/Modal/Modal';
 import AddToCart from '@/components/book/AddToCart';
 import BookReview from '@/components/book/BookReview';
+import { Tabs } from '@/components/ui/Tabs/Tabs';
 
 interface BookInfoItem {
   label: string;
@@ -115,20 +115,25 @@ function BookDetail() {
         </div>
       </header>
 
-      <section>
-        <h2 className={styles.sectionTitle}>상세 설명</h2>
-        <pre className={styles.pre}>{book.detail}</pre>
-      </section>
-
-      <section>
-        <h2 className={styles.sectionTitle}>목차</h2>
-        <pre className={styles.pre}>{book.contents}</pre>
-      </section>
-
-      <section>
-        <h2 className={styles.sectionTitle}>리뷰</h2>
-        <BookReview reviews={reviews} onAdd={addReview} />
-      </section>
+      <Tabs
+        items={[
+          {
+            key: 'detail',
+            label: '상세 설명',
+            content: <pre>{book.detail}</pre>,
+          },
+          {
+            key: 'contents',
+            label: '목차',
+            content: <pre>{book.contents}</pre>,
+          },
+          {
+            key: 'review',
+            label: '리뷰',
+            content: <BookReview reviews={reviews} onAdd={addReview} />,
+          },
+        ]}
+      />
 
       <Modal
         open={isModalOpen}

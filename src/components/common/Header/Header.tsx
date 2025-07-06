@@ -15,8 +15,9 @@ import clsx from 'clsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCategory } from '@/hooks/useCategory';
 import { useAuthStore } from '@/store/authStore';
-import Dropdown from '@/components/ui/Dropdown';
+
 import DarkModeToggle from '@/components/ui/DarkModeToggle';
+import Dropdown from '@/components/ui/Dropdown/Dropdown';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,12 +38,20 @@ function Header() {
         { label: '🛒 장바구니', value: 'cart' },
         { label: '📦 주문 내역', value: 'orders' },
         { label: '🚪 로그아웃', value: 'logout' },
-        { label: <DarkModeToggle />, onClick: () => {} },
+        {
+          label: ({ close }: { close: () => void }) => (
+            <DarkModeToggle close={close} />
+          ),
+        },
       ]
     : [
         { label: '➡️ 로그인', value: 'login' },
         { label: '👤 회원가입', value: 'signup' },
-        { label: <DarkModeToggle />, onClick: () => {} },
+        {
+          label: ({ close }: { close: () => void }) => (
+            <DarkModeToggle close={close} />
+          ),
+        },
       ];
 
   return (

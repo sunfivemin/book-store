@@ -5,7 +5,9 @@ import * as styles from './Dropdown.css';
 
 interface Props {
   items: {
-    label: React.ReactNode;
+    label:
+      | React.ReactNode
+      | ((props: { close: () => void }) => React.ReactNode);
     value?: string | number;
     onClick?: () => void;
   }[];
@@ -18,12 +20,14 @@ function Dropdown({ items, value, onChange, label }: Props) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const closeDropdown = () => setOpen(false);
+
   const handleSelect = (item: Props['items'][number]) => {
     if (item.onClick) item.onClick();
     if (item.value !== undefined && onChange) {
       onChange(item.value);
     }
-    setOpen(false);
+    closeDropdown();
   };
 
   useEffect(() => {
@@ -55,11 +59,15 @@ function Dropdown({ items, value, onChange, label }: Props) {
               key={idx}
               className={clsx(
                 styles.item,
-                item.value === value && styles.active
+                item.value !== undefined &&
+                  item.value === value &&
+                  styles.active
               )}
               onClick={() => handleSelect(item)}
             >
-              {item.label}
+              {typeof item.label === 'function'
+                ? item.label({ close: closeDropdown })
+                : item.label}
             </li>
           ))}
         </ul>
