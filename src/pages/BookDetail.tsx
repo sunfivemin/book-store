@@ -11,6 +11,7 @@ import { Modal } from '@/components/ui/Modal/Modal';
 import AddToCart from '@/components/book/AddToCart';
 import BookReview from '@/components/book/BookReview';
 import { Tabs } from '@/components/ui/Tabs/Tabs';
+import { ImageModal } from '@/components/ui/Modal/ImageModal';
 
 interface BookInfoItem {
   label: string;
@@ -58,6 +59,7 @@ function BookDetail() {
     addReview,
   } = useBook(bookId);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [imageModalOpen, setImageModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLikeClick = () => {
@@ -93,8 +95,16 @@ function BookDetail() {
             src={getImgSrc(book.img)}
             alt={book.title}
             className={styles.image}
+            onClick={() => setImageModalOpen(true)}
+            style={{ cursor: 'zoom-in' }}
           />
         </div>
+        <ImageModal
+          open={imageModalOpen}
+          onClose={() => setImageModalOpen(false)}
+          src={getImgSrc(book.img)}
+          alt={book.title}
+        />
         <div className={styles.content}>
           <h1 className={styles.bookTitle}>{book.title}</h1>
           <dl className={styles.dl}>
