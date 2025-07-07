@@ -22,3 +22,9 @@ export const titleColorStyle = styleVariants({
   input: { color: vars.color.input },
   surfaceHover: { color: vars.color.surfaceHover },
 });
+
+export const titleWeightStyle = styleVariants({
+  regular: { fontWeight: '400' },
+  medium: { fontWeight: '500' },
+  bold: { fontWeight: '700' },
+});

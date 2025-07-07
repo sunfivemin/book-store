@@ -37,7 +37,7 @@ export const addReview = http.post(
 );
 
 // 메인 페이지용 전체 리뷰 핸들러 추가
-export const reviewForMain = http.get('http://localhost:9999/reviews/', () => {
+export const reviewForMain = http.get('http://localhost:9999/reviews', () => {
   const data = Array.from({ length: 10 }).map((_, index) => ({
     id: index + 1,
     userName: faker.person.fullName(),

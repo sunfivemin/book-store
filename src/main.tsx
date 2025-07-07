@@ -7,7 +7,9 @@ import './styles/global.css.ts';
 
 if (import.meta.env.MODE === 'development') {
   const { worker } = await import('./mock/browser');
-  await worker.start();
+  await worker.start({
+    onUnhandledRequest: 'bypass',
+  });
 }
 
 createRoot(document.getElementById('root')!).render(

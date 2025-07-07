@@ -5,12 +5,22 @@ import { Heart } from 'lucide-react';
 import type { ViewMode } from './BooksViewSwitcher';
 import clsx from 'clsx';
 import { Link } from 'react-router';
+
 interface BookItemProps {
   book: Book;
   view: ViewMode;
+  showSummary?: boolean;
+  showPrice?: boolean;
+  showLikes?: boolean;
 }
 
-function BookItem({ book, view }: BookItemProps) {
+function BookItem({
+  book,
+  view,
+  showSummary = true,
+  showPrice = true,
+  showLikes = true,
+}: BookItemProps) {
   const isList = view === 'list';
 
   return (
@@ -49,23 +59,33 @@ function BookItem({ book, view }: BookItemProps) {
           <div>
             <h2 className="font-bold text-base">{book.title}</h2>
             <p className="text-xs text-gray-500">{book.author}</p>
-            <p className="text-xs text-gray-400 line-clamp-1">{book.summary}</p>
+            {showSummary && (
+              <p className="text-xs text-gray-400 line-clamp-1">
+                {book.summary}
+              </p>
+            )}
           </div>
 
-          <div
-            className={clsx(
-              'flex items-center justify-between mt-3',
-              isList && 'mt-auto'
-            )}
-          >
-            <span className="font-semibold text-sm">
-              {formatNumber(book.price)}원
-            </span>
-            <span className="text-xs flex items-center gap-1">
-              <Heart className="text-red-400 fill-red-400" size={16} />
-              {book.likes}
-            </span>
-          </div>
+          {(showPrice || showLikes) && (
+            <div
+              className={clsx(
+                'flex items-center justify-between mt-3',
+                isList && 'mt-auto'
+              )}
+            >
+              {showPrice && (
+                <span className="font-semibold text-sm">
+                  {formatNumber(book.price)}원
+                </span>
+              )}
+              {showLikes && (
+                <span className="text-xs flex items-center gap-1">
+                  <Heart className="text-red-400 fill-red-400" size={16} />
+                  {book.likes}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </Link>
     </div>

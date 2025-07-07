@@ -1,1 +1,4 @@
-export const getImgSrc = (id: number) => `https://picsum.photos/id/${id}/600/600`; 
+// getImgSrc.ts
+export const getImgSrc = (seed: string) => {
+  return `https://picsum.photos/seed/${seed}/600/600`;
+};
