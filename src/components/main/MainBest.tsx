@@ -7,13 +7,7 @@ interface Props {
 
 function MainBest({ books }: Props) {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '16px',
-      }}
-    >
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {books.map((item, index) => (
         <BookBestItem key={item.id} book={item} itemIndex={index} />
       ))}

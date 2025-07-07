@@ -48,6 +48,7 @@ const Signup = () => {
               required: '이메일은 필수입니다',
             })}
             error={errors.email?.message}
+            inputMode="email"
           />
         </fieldset>
 
@@ -65,6 +66,7 @@ const Signup = () => {
               },
             })}
             error={errors.password?.message}
+            inputMode="text"
           />
         </fieldset>
 

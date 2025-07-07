@@ -7,13 +7,7 @@ interface Props {
 
 function MainNewBooks({ books }: Props) {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '16px',
-      }}
-    >
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {books.map(book => (
         <BookItem key={book.id} book={book} view="grid" />
       ))}

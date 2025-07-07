@@ -32,6 +32,7 @@ const Login = () => {
             variant="outline"
             {...register('email', { required: '이메일은 필수입니다' })}
             error={errors.email?.message}
+            inputMode="email"
           />
         </fieldset>
         <fieldset>
@@ -42,6 +43,7 @@ const Login = () => {
             variant="outline"
             {...register('password', { required: '비밀번호는 필수입니다' })}
             error={errors.password?.message}
+            inputMode="text"
           />
         </fieldset>
         <fieldset>
