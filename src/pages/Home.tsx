@@ -1,3 +1,4 @@
+import Banners from '@/components/common/Banners/Banners';
 import Title from '@/components/common/Title';
 import MainBest from '@/components/main/MainBest';
 import MainNewBooks from '@/components/main/MainNewBooks';
@@ -5,7 +6,7 @@ import MainReview from '@/components/main/MainReview';
 import { useMain } from '@/hooks/useMain';
 
 export default function Home() {
-  const { reviews, newBooks, bestBooks } = useMain();
+  const { reviews, newBooks, bestBooks, banners } = useMain();
   return (
     <div
       style={{
@@ -15,6 +16,7 @@ export default function Home() {
       }}
     >
       {/* banner */}
+      <Banners banners={banners} />
 
       {/* bestseller */}
       <section>
