@@ -92,7 +92,7 @@ function BookDetail() {
       <header className={styles.layout}>
         <div className={styles.imageWrapper}>
           <img
-            src={getImgSrc(book.img)}
+            src={getImgSrc(`${book.img}`)}
             alt={book.title}
             className={styles.image}
             onClick={() => setImageModalOpen(true)}
@@ -102,7 +102,7 @@ function BookDetail() {
         <ImageModal
           open={imageModalOpen}
           onClose={() => setImageModalOpen(false)}
-          src={getImgSrc(book.img)}
+          src={getImgSrc(`${book.img}`)}
           alt={book.title}
         />
         <div className={styles.content}>

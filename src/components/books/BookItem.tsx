@@ -43,7 +43,7 @@ function BookItem({
         >
           {book.img ? (
             <img
-              src={getImgSrc(book.id)}
+              src={getImgSrc(String(book.id))}
               alt={book.title}
               className="absolute top-0 left-0 w-full h-full object-cover"
             />
