@@ -1,3 +1,9 @@
+<img width="1687" alt="banner" src="https://github.com/user-attachments/assets/30e045b1-9947-444e-a70f-f600ac37162f" />
+<img width="1680" alt="review" src="https://github.com/user-attachments/assets/c0182d1d-7cf6-448e-8e6b-0b02157bbbdb" />
+![Uploading BooksList.png…]()
+<img width="1453" alt="orderSuccess" src="https://github.com/user-attachments/assets/bf0366cd-3f57-4c41-a10c-1e7bfd029def" />
+
+
 # 🎨 스타일 시스템 가이드
 
 이 프로젝트는 **Tailwind CSS**와 **Vanilla Extract**를 함께 활용하여, 확장성과 유지보수성이 뛰어난 스타일 시스템을 구현합니다.  
@@ -270,8 +276,4 @@ selectors: {
   </div>
 </header>
 ```
-<img width="1687" alt="banner" src="https://github.com/user-attachments/assets/30e045b1-9947-444e-a70f-f600ac37162f" />
-<img width="1680" alt="review" src="https://github.com/user-attachments/assets/c0182d1d-7cf6-448e-8e6b-0b02157bbbdb" />
-![Uploading BooksList.png…]()
-<img width="1453" alt="orderSuccess" src="https://github.com/user-attachments/assets/bf0366cd-3f57-4c41-a10c-1e7bfd029def" />
 
