@@ -1,5 +1,5 @@
 
-# 📚 BOOKSTORE - 온라인 서점 웹 애플리케이션
+# 📚 BOOKSTORE - 도서 쇼핑몰 풀스택 프로젝트
 
 <div align="center">
 
