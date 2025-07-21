@@ -12,6 +12,8 @@
 **React 19, TypeScript, Vite 기반의 현대적인 온라인 서점입니다.**  
 Tailwind CSS와 Vanilla Extract를 활용한 확장 가능한 스타일 시스템을 제공하며, 프로그래머스 강의를 통해 학습한 풀스택 개발 기술을 바탕으로 백엔드와 프론트엔드를 혼자 구축하였습니다.
 
+백엔드 프로젝트는 [book-shop (GitHub)](https://github.com/sunfivemin/book-shop) 와 연결됩니다.
+
 <img width="1687" alt="banner" src="https://github.com/user-attachments/assets/30e045b1-9947-444e-a70f-f600ac37162f" />
 <img width="1680" alt="review" src="https://github.com/user-attachments/assets/c0182d1d-7cf6-448e-8e6b-0b02157bbbdb" />
 <img width="1453" alt="orderSuccess" src="https://github.com/user-attachments/assets/bf0366cd-3f57-4c41-a10c-1e7bfd029def" />
